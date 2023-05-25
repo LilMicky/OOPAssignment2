@@ -1,3 +1,5 @@
+from Materials import *
+
 class Weapon():
     """
     A class representing a weapon.
@@ -48,8 +50,17 @@ class Weapon():
         Returns:
             damage (float) : The damage output.
         """
-        pass
-
+        if isinstance(self.primaryMaterial, Wood) and isinstance(self.catalystMaterial, Wood):
+            return self.primaryMaterial.strength * self.catalystMaterial.strength
+        elif isinstance(self.primaryMaterial, Metal) and isinstance(self.catalystMaterial, Metal):
+            return (self.primaryMaterial.strength * self.primaryMaterial.purity) + (self.catalystMaterial.strength * self.catalystMaterial.purity)
+        elif isinstance(self.primaryMaterial, Wood) and isinstance(self.catalystMaterial, Metal):
+            return self.primaryMaterial.strength * (self.catalystMaterial.strength * self.catalystMaterial.purity)
+        
+        # In case of the primary material being metal and catalyst being wood.
+        else:
+            return (self.primaryMaterial.strength * self.primaryMaterial.purity) * self.catalystMaterial.strength
+            
     def attack(self):
         """
         Attacks and deals the damage associated with the weapon.
@@ -57,7 +68,7 @@ class Weapon():
         Returns:
             attackMessage (string) : An attack message displaying the damage output.
         """
-        pass
+        return f"It deals {self.damage:.2} damage."
 
     def getName(self):
         """
@@ -66,7 +77,7 @@ class Weapon():
         Returns:
             name (string) : The name of the weapon.
         """
-        pass
+        return self.__name
 
     def getDamage(self):
         """
@@ -75,7 +86,7 @@ class Weapon():
         Returns:
             damage (float) : The damage of the weapon.
         """
-        pass
+        return self.__damage
 
     def getEnchanted(self):
         """
@@ -84,7 +95,7 @@ class Weapon():
         Returns:
             enchanted (boolean) : The enchanted status of the weapon.
         """
-        pass
+        return self.__enchanted
 
     def getPrimaryMaterial(self):
         """
@@ -93,7 +104,7 @@ class Weapon():
         Returns:
             primaryMaterial (string) : The primary material of the weapon.
         """
-        pass
+        return self.__primaryMaterial
 
     def getSecondaryMaterial(self):
         """
@@ -102,7 +113,7 @@ class Weapon():
         Returns:
             catalystMaterial (string) : The catalyst material of the weapon.
         """
-        pass
+        return self.__catalystMaterial
 
     def getEnchantment(self):
         """
@@ -111,7 +122,7 @@ class Weapon():
         Returns:
             enchanment (string) : The enchantment of the weapon.
         """
-        pass
+        return self.__enchantment
 
     def setName(self, name):
         """
@@ -120,7 +131,7 @@ class Weapon():
         Parameters:
             name (string) : The name of the weapon.
         """
-        pass
+        self.__name = name
 
     def setDamage(self, damage):
         """
@@ -129,7 +140,7 @@ class Weapon():
         Parameters:
             damage (float) : The damage of the weapon.
         """
-        pass
+        self.__damage = damage
 
     def setEnchanted(self, enchanted):
         """
@@ -138,7 +149,7 @@ class Weapon():
         Parameters:
             enchanted (boolean) : The enchanted status of the weapon.
         """
-        pass
+        self.__enchanted = enchanted
 
     def setEnchantment(self, enchantment):
         """
@@ -147,7 +158,7 @@ class Weapon():
         Parameters:
             enchantment (string) : The enchantment of the weapon.
         """
-        pass
+        self.__enchantment = enchantment
 
     # Properties for variables with getters and setters
     name = property(getName, setName)

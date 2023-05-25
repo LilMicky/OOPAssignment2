@@ -21,6 +21,7 @@ workshop = Workshop(Forge(), Enchanter())
 # Create a set of materials and lists for testing.
 materials = [Maple(), Oak(), Ash(), Bronze(), Iron(), Steel(),
 Ruby(), Sapphire(), Emerald(), Diamond(), Amethyst(), Onyx()]
+
 weaponBlueprints = {
 "Sword": [Steel(), Maple()],
 "Shield": [Bronze(), Oak()],
@@ -39,6 +40,7 @@ enchantmentBlueprints = {
 "Hydro": [Sapphire(), Emerald()],
 "Venomous": [Emerald(), Amethyst()],
 "Earthly": [Emerald(), Emerald()]}
+
 enchantedWeapons = ["Holy Greatsword", "Molten Defender", "Berserker Axe", "Soul Eater",
 "Twisted Bow", "Wand of the Deep", "Venemous Battlestaff"]
 

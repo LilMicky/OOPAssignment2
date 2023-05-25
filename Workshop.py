@@ -4,10 +4,10 @@ class Workshop():
 
     Attributes
     ----------
-    forgeClass : Class
+    forge : Class
         The class used to forge weapons.
 
-    enchanterClass: Class
+    enchanter: Class
         The class used to enchant weapons.
 
     Methods
@@ -22,10 +22,13 @@ class Workshop():
         Returns a list of materials stored in the workshop.
     """
     def __init__(self, forgeClass, enchanterClass):
-        self.forgeClass = forgeClass
-        self.enchanterClass = enchanterClass
-        self.weaponsList = []
-        self.enchantmentsList = []
+        self.forge = forgeClass
+        self.enchanter = enchanterClass
+        self.weapons = []
+        self.enchantments = []
+        self.materials = {}
+
+        # Adding materials to the dict
 
     def addWeapon(self, weapon):
         """
@@ -62,7 +65,7 @@ class Workshop():
         Parameters:
             weapon (object) : The weapon object being removed.
         """
-        self.weaponsList.remove(weapon)
+        self.weapons.remove(weapon)
 
     def removeEnchantment(self, enchantment):
         """
@@ -71,7 +74,7 @@ class Workshop():
         Parameters:
             enchantment (object) : The enchantment object being removed.
         """
-        self.enchantmentsList.remove(enchantment)
+        self.enchantments.remove(enchantment)
 
     def removeMaterial(self, material, total):
         """
@@ -90,7 +93,7 @@ class Workshop():
         Returns:
         Weapons (list): The list of weapons.
         """
-        for weapon in self.weaponsList:
+        for weapon in self.weapons:
             if weapon.enchanted == False:
                 print(f"The {weapon.name} is not enchanted. {weapon.attack()}")
             else:
@@ -103,7 +106,7 @@ class Workshop():
         Returns:
         Enchantments (list): The list of enchantments.
         """
-        for enchant in self.enchantmentsList:
+        for enchant in self.enchantments:
             print(f"A {enchant.name} enchantment is stored in the workshop.")
 
     def displayMaterials(self):
@@ -112,5 +115,5 @@ class Workshop():
 
         Materials (list): The list of materials.
         """
-        for material in self.materialsDict:
+        for material in self.materials:
             print(f"{material.name}: {material.total} remaining.")
