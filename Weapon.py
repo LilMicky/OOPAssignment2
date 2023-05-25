@@ -43,23 +43,23 @@ class Weapon():
         self.__enchantment = ""
         self.__enchanted = False
 
-    def calculateDamage(self):
+    def calculateDamage(self, primaryMaterial, catalystMaterial):
         """
         Calculates the damage of the weapon.
 
         Returns:
             damage (float) : The damage output.
         """
-        if isinstance(self.primaryMaterial, Wood) and isinstance(self.catalystMaterial, Wood):
-            return self.primaryMaterial.strength * self.catalystMaterial.strength
-        elif isinstance(self.primaryMaterial, Metal) and isinstance(self.catalystMaterial, Metal):
-            return (self.primaryMaterial.strength * self.primaryMaterial.purity) + (self.catalystMaterial.strength * self.catalystMaterial.purity)
-        elif isinstance(self.primaryMaterial, Wood) and isinstance(self.catalystMaterial, Metal):
-            return self.primaryMaterial.strength * (self.catalystMaterial.strength * self.catalystMaterial.purity)
+        if isinstance(primaryMaterial, Wood) and isinstance(catalystMaterial, Wood):
+            return primaryMaterial.strength * catalystMaterial.strength
+        elif isinstance(primaryMaterial, Metal) and isinstance(catalystMaterial, Metal):
+            return (primaryMaterial.strength * primaryMaterial.purity) + (catalystMaterial.strength * catalystMaterial.purity)
+        elif isinstance(primaryMaterial, Wood) and isinstance(catalystMaterial, Metal):
+            return primaryMaterial.strength * (catalystMaterial.strength * catalystMaterial.purity)
         
         # In case of the primary material being metal and catalyst being wood.
         else:
-            return (self.primaryMaterial.strength * self.primaryMaterial.purity) * self.catalystMaterial.strength
+            return (primaryMaterial.strength * primaryMaterial.purity) * catalystMaterial.strength
             
     def attack(self):
         """
@@ -68,7 +68,7 @@ class Weapon():
         Returns:
             attackMessage (string) : An attack message displaying the damage output.
         """
-        return f"It deals {self.damage:.2} damage."
+        return f"It deals {self.damage:0.2f} damage."
 
     def getName(self):
         """

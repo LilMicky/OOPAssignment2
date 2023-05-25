@@ -31,6 +31,7 @@ weaponBlueprints = {
 "Wand": [Ash(), Oak()],
 "Staff": [Bronze(), Maple()],
 "Dagger": [Bronze(), Bronze()]}
+
 enchantmentBlueprints = {
 "Holy": [Diamond(), Diamond()],
 "Lava": [Ruby(), Onyx()],
@@ -59,6 +60,7 @@ print(workshop.displayMaterials())
 for weapon, materials in weaponBlueprints.items():
     craftedWeapon = workshop.forge.craft(
     weapon, materials[0], materials[1], workshop.materials)
+
     workshop.addWeapon(craftedWeapon)
 
 # Disassemble the extra weapon.

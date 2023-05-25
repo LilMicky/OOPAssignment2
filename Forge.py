@@ -32,7 +32,9 @@ class Forge(Crafter):
         materials[primaryMaterial.__class__.__name__] -= 1
         materials[catalystMaterial.__class__.__name__] -= 1
 
-        return Weapon(name, primaryMaterial, catalystMaterial, materials)
+        damage = Weapon.calculateDamage(self, primaryMaterial, catalystMaterial)
+
+        return Weapon(name, damage, primaryMaterial, catalystMaterial)
 
     def disassemble(self, weapon, materials):
         """
@@ -43,12 +45,10 @@ class Forge(Crafter):
             materials (list) : The list of materials.
 
         Returns:
-            disassembledWeapon : The disassembled materials.
+            disassembledWeapon : The disassembled weapon.
         """
-        
-        # Removing the weapon from weaponsList
-        Workshop.removeWeapon(self, weapon)
-
         # Returning materials used to craft it
         materials[weapon.primaryMaterial.__class__.__name__] += 1
         materials[weapon.catalystMaterial.__class__.__name__] += 1
+
+        return weapon

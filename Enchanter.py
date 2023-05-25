@@ -1,4 +1,5 @@
 from Crafter import *
+from Enchantment import *
 
 class Enchanter(Crafter):
     def __init__(self):
@@ -24,7 +25,12 @@ class Enchanter(Crafter):
         Returns:
             enchantment (object) : The enchantment object.    
         """
-        pass
+        materials[primaryMaterial.__class__.__name__] -= 1
+        materials[catalystMaterial.__class__.__name__] -= 1 
+
+        magicDamage = Enchantment.calculateMagicDamage(self, primaryMaterial, catalystMaterial)
+
+        return Enchantment(name, magicDamage, primaryMaterial, catalystMaterial)
 
     def disassemble(self, enchantment, materials):
         """
@@ -37,8 +43,11 @@ class Enchanter(Crafter):
         Returns:
             disassembledEnchantment: The disassembled materials.
         """
-        pass
-
+        materials[enchantment.primaryMaterial.__class__.__name__] += 1
+        materials[enchantment.catalystMaterial.__class__.__name__] += 1 
+        
+        return enchantment
+    
     def enchant(self, weaponsList, weaponsToBeEnchanted, enchantmentList):
         """
         Enchants any given weapons.

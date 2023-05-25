@@ -23,24 +23,28 @@ class Enchantment():
         uses the effect of the enchantment.
 
     """
-    def __init__(self, name, magicDamage, effect, primaryMaterial, catalystMaterial):
+    def __init__(self, name, magicDamage, primaryMaterial, catalystMaterial):
 
         # Assigning values to private attributes.
         self.__name = name
         self.__magicDamage = magicDamage
-        self.__effect = effect
+        self.__effect = "effect"
         self.__primaryMaterial = primaryMaterial
         self.__catalystMaterial = catalystMaterial
 
-    def calculateMagicDamage(self):
+    def calculateMagicDamage(self, primaryMaterial, catalystMaterial):
         """
         Calculates the damage of an enchantment.
+
+        Parameters:
+            primaryMaterial (string) : The primary material of the enchantment.
+            catalystMaterial (string) : The catalyst material of the enchantment.
 
         Returns:
             magicDamage (float) : The damage of the enchantment.
                 
         """
-        pass
+        return primaryMaterial.magicPower + catalystMaterial.magicPower
 
     def useEffect(self):
         """
@@ -50,6 +54,7 @@ class Enchantment():
             effectMessage (string) : An effect message stating what enchantment was used and the effect it has.
 
         """
+        return f"{self.name} enchantment and {self.effect}"
 
     def getName(self):
         """

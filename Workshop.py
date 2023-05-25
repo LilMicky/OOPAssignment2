@@ -1,3 +1,5 @@
+from Materials import *
+
 class Workshop():
     """
     The main class where the enchanter, and forge class objects will be stored. As well as the weapons, enchantments, and materials.
@@ -26,9 +28,8 @@ class Workshop():
         self.enchanter = enchanterClass
         self.weapons = []
         self.enchantments = []
-        self.materials = {}
-
-        # Adding materials to the dict
+        self.materials = {"Maple": 0, "Oak": 0, "Ash": 0, "Bronze": 0, "Iron": 0, "Steel": 0,
+        "Ruby": 0, "Sapphire": 0, "Emerald": 0, "Diamond": 0, "Amethyst": 0, "Onyx": 0}
 
     def addWeapon(self, weapon):
         """
@@ -37,7 +38,7 @@ class Workshop():
         Parameters:
             weapon (object) : The weapon object being added.
         """
-        self.weaponsList.append(weapon)
+        self.weapons.append(weapon)
 
     def addEnchantment(self, enchantment):
         """
@@ -46,7 +47,7 @@ class Workshop():
         Parameters:
             enchantment (object) : The enchantment object being added.
         """
-        self.enchantmentsList.append(enchantment)
+        self.enchantments.append(enchantment)
 
     def addMaterial(self, material, total):
         """
@@ -56,7 +57,7 @@ class Workshop():
             materials (object) : The materials object being added.
             total (int) : The amount of materials being added.
         """
-        pass
+        self.materials[material] = total
 
     def removeWeapon(self, weapon):
         """
@@ -116,4 +117,4 @@ class Workshop():
         Materials (list): The list of materials.
         """
         for material in self.materials:
-            print(f"{material.name}: {material.total} remaining.")
+            print(f"{material}: {self.materials[material]} remaining.")
