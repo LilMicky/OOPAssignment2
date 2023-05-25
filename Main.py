@@ -7,6 +7,7 @@ EmailID: jenhi001
 This is my own work as defined by the University's Academic Misconduct Policy.
 '''
 
+
 import Materials
 from abc import ABC, abstractmethod
 
@@ -35,8 +36,65 @@ class Workshop():
         Returns a list of materials stored in the workshop.
     """
     def __init__(self, forgeClass, enchanterClass):
+        self.forgeClass = forgeClass
+        self.enchanterClass = enchanterClass
+        self.weaponsList = []
+        self.enchantmentsList = []
+
+    def addWeapon(self, weapon):
+        """
+        Adds a new weapon to the workshop.
+
+        Parameters:
+            weapon (object) : The weapon object being added.
+        """
+        self.weaponsList.append(weapon)
+
+    def addEnchantment(self, enchantment):
+        """
+        Adds a new enchantment to the workshop.
+
+        Parameters:
+            enchantment (object) : The enchantment object being added.
+        """
+        self.enchantmentsList.append(enchantment)
+
+    def addMaterials(self, materials):
+        """
+        Adds new materials to the workshop.
+
+        Parameters:
+            materials (object) : The materials object being added.
+        """
         pass
 
+    def removeWeapon(self, weapon):
+        """
+        Removes a weapon from the workshop.
+
+        Parameters:
+            weapon (object) : The weapon object being removed.
+        """
+        self.weaponsList.remove(weapon)
+
+    def removeEnchantment(self, enchantment):
+        """
+        Removes an enchantment from the workshop.
+
+        Parameters:
+            enchantment (object) : The enchantment object being removed.
+        """
+        self.enchantmentsList.remove(enchantment)
+
+    def removeMaterials(self, materials):
+        """
+        Removes materials from the workshop.
+
+        Parameters:
+            materials (object) : The materials object being removed.
+        """
+        pass
+    
     def displayWeapons(self):
         """
         Returns a list of weapons stored in the workshop.
@@ -44,7 +102,11 @@ class Workshop():
         Returns:
         Weapons (list): The list of weapons.
         """
-        pass
+        for weapon in self.weaponsList:
+            if weapon.enchanted == False:
+                print(f"The {weapon.name} is not enchanted. {weapon.attack()}")
+            else:
+                print(f"The {weapon.name} is imbued with a {weapon.enchantment.useEffect()}. {weapon.attack()}")
 
     def displayEnchantments(self):
         """
@@ -53,7 +115,8 @@ class Workshop():
         Returns:
         Enchantments (list): The list of enchantments.
         """
-        pass
+        for enchant in self.enchantmentsList:
+            print(f"A {enchant.name} enchantment is stored in the workshop.")
 
     def displayMaterials(self):
         """
@@ -61,7 +124,8 @@ class Workshop():
 
         Materials (list): The list of materials.
         """
-        pass
+        for material in self.materialsDict:
+            print(f"{material.name}: {material.total} remaining.")
 
 
 class Crafter(ABC):
@@ -115,7 +179,11 @@ class Forge(Crafter):
         Returns:
             weapon (object) : The weapon object.
         """
-        pass
+        # Removing materials used to craft the weapon.
+        materials[primaryMaterial.__class__.__name__] -= 1
+        materials[catalystMaterial.__class__.__name__] -= 1
+
+        return Weapon(name, primaryMaterial, catalystMaterial, materials)
 
     def disassemble(self, weapon, materials):
         """
@@ -128,7 +196,13 @@ class Forge(Crafter):
         Returns:
             disassembledWeapon : The disassembled materials.
         """
-        pass
+        
+        # Removing the weapon from weaponsList
+        Workshop.removeWeapon(self, weapon)
+
+        # Returning materials used to craft it
+        materials[weapon.primaryMaterial.__class__.__name__] += 1
+        materials[weapon.catalystMaterial.__class__.__name__] += 1
 
 class Enchanter(Crafter):
     def __init__(self):
@@ -478,3 +552,6 @@ class Enchantment():
 
 
 
+workshop = Workshop("slay", "nah")
+
+print(workshop.materialsDict)
