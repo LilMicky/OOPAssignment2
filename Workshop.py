@@ -1,4 +1,20 @@
+'''
+File: Workshop.py
+Description: This files contains the code for the workshop class.
+Author: Harrison Jenkins
+Student ID: 110348652
+EmailID: jenhi001
+This is my own work as defined by the University's Academic Misconduct Policy.
+'''
+
+
+from Crafter import *
+from Enchanter import *
+from Forge import *
+from Weapon import *
+from Enchantment import *
 from Materials import *
+
 
 class Workshop():
     """
@@ -85,7 +101,7 @@ class Workshop():
             materials (object) : The materials object being removed.
             total (int) : The amount of materials being removed.
         """
-        pass
+        self.materials[material] -= total
     
     def displayWeapons(self):
         """

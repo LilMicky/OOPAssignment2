@@ -1,8 +1,21 @@
+'''
+File: Forge.py
+Description: This files contains the code for the forge class.
+Author: Harrison Jenkins
+Student ID: 110348652
+EmailID: jenhi001
+This is my own work as defined by the University's Academic Misconduct Policy.
+'''
+
+
 from Workshop import *
 from Crafter import *
+from Enchanter import *
 from Weapon import *
+from Enchantment import *
+from Materials import *
 
-print(type(Crafter))
+
 class Forge(Crafter):
     """
     This class is a type of Crafter.
@@ -33,7 +46,6 @@ class Forge(Crafter):
         materials[catalystMaterial.__class__.__name__] -= 1
 
         damage = Weapon.calculateDamage(self, primaryMaterial, catalystMaterial)
-
         return Weapon(name, damage, primaryMaterial, catalystMaterial)
 
     def disassemble(self, weapon, materials):

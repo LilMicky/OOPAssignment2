@@ -1,4 +1,19 @@
+'''
+File: Weapon.py
+Description: This files contains the code for the weapon class.
+Author: Harrison Jenkins
+Student ID: 110348652
+EmailID: jenhi001
+This is my own work as defined by the University's Academic Misconduct Policy.
+'''
+
+from Workshop import *
+from Crafter import *
+from Enchanter import *
+from Forge import *
+from Enchantment import *
 from Materials import *
+
 
 class Weapon():
     """
@@ -31,9 +46,6 @@ class Weapon():
             damage (float) : The damage of the weapon.
             primaryMaterial (string) : The primary material of the weapon.
             catalystMaterial (string) : The catalyst material of the weapon.
-
-        Returns:
-            weapon (object) : A weapon object.
         """
         # Assigning values to private variables.
         self.__name = name

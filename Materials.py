@@ -1,6 +1,6 @@
 '''
 File: Materials.py
-Description: This files contains the classes of the materials.
+Description: This files contains the code for the material classes.
 Author: Harrison Jenkins
 Student ID: 110348652
 EmailID: jenhi001
@@ -9,7 +9,12 @@ This is my own work as defined by the University's Academic Misconduct Policy.
 
 
 from abc import ABC
-
+from Workshop import *
+from Crafter import *
+from Enchanter import *
+from Forge import *
+from Weapon import *
+from Enchantment import *
 
 class Material(ABC):
     def __init__(self, strength):

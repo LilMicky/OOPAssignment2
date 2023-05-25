@@ -59,8 +59,7 @@ print(workshop.displayMaterials())
 # Crafts the following: Sword, Shield, Axe, Scythe, Bow, Wand and Staff weapons.
 for weapon, materials in weaponBlueprints.items():
     craftedWeapon = workshop.forge.craft(
-    weapon, materials[0], materials[1], workshop.materials)
-
+        weapon, materials[0], materials[1], workshop.materials)
     workshop.addWeapon(craftedWeapon)
 
 # Disassemble the extra weapon.
@@ -72,7 +71,7 @@ print(workshop.displayWeapons())
 # Crafts the following: Holy, Lava, Pyro, Darkness, Cursed, Hydro and Venomous enchantments.
 for enchantment, materials in enchantmentBlueprints.items():
     craftedEnchantment = workshop.enchanter.craft(
-    enchantment, materials[0], materials[1], workshop.materials)
+        enchantment, materials[0], materials[1], workshop.materials)
     workshop.addEnchantment(craftedEnchantment)
 
 # Disassemble the extra enchantment.
@@ -87,5 +86,5 @@ print(workshop.displayMaterials())
 for i in range(len(enchantedWeapons)):
     workshop.enchanter.enchant(
     workshop.weapons[i], enchantedWeapons[i], workshop.enchantments[i])
-    print("-----------------------------------Enchanted Armoury----------------------------------")
-    print(workshop.displayWeapons())
+print("-----------------------------------Enchanted Armoury----------------------------------")
+print(workshop.displayWeapons())

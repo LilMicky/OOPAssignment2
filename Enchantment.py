@@ -1,3 +1,21 @@
+'''
+File: Enchantment.py
+Description: This files contains the code for the enchantment class.
+Author: Harrison Jenkins
+Student ID: 110348652
+EmailID: jenhi001
+This is my own work as defined by the University's Academic Misconduct Policy.
+'''
+
+
+from Workshop import *
+from Crafter import *
+from Enchanter import *
+from Forge import *
+from Weapon import *
+from Materials import *
+
+
 class Enchantment():
     """
     A class representing an enchantment for a weapon.
@@ -23,12 +41,12 @@ class Enchantment():
         uses the effect of the enchantment.
 
     """
-    def __init__(self, name, magicDamage, primaryMaterial, catalystMaterial):
+    def __init__(self, name, magicDamage, effect, primaryMaterial, catalystMaterial):
 
         # Assigning values to private attributes.
         self.__name = name
         self.__magicDamage = magicDamage
-        self.__effect = "effect"
+        self.__effect = effect
         self.__primaryMaterial = primaryMaterial
         self.__catalystMaterial = catalystMaterial
 
@@ -63,7 +81,7 @@ class Enchantment():
         Returns:
             name (string) : The name of the enchantment.
         """
-        pass
+        return self.__name
 
     def getMagicDamage(self):
         """
@@ -72,7 +90,7 @@ class Enchantment():
         Returns:
             magicDamage (float) : The magic damage of the enchantment.
         """
-        pass
+        return self.__magicDamage
 
     def getEffect(self):
         """
@@ -81,7 +99,7 @@ class Enchantment():
         Returns:
             effect (string) : The effect of the enchantment.
         """
-        pass
+        return self.__effect
 
     def getPrimaryMaterial(self):
         """
@@ -90,7 +108,7 @@ class Enchantment():
         Returns:
             primaryMaterial (string) : The primary material of the enchantment.
         """
-        pass
+        return self.__primaryMaterial
 
     def getSecondaryMaterial(self):
         """
@@ -99,7 +117,7 @@ class Enchantment():
         Returns:
             catalystMaterial (string) : The catalyst material of the enchantment.
         """
-        pass
+        return self.__catalystMaterial
 
     def setName(self, name):
         """
@@ -108,7 +126,7 @@ class Enchantment():
         Parameters:
             name (string) : The name of the enchantment.
         """
-        pass
+        self.__name = name
 
     def setEffect(self, effect):
         """
@@ -117,7 +135,7 @@ class Enchantment():
         Parameters:
             effect (string) : The effect of the enchantment.
         """
-        pass
+        self.__effect = effect
 
     def setMagicDamage(self, magicDamage):
         """
@@ -126,7 +144,7 @@ class Enchantment():
         Parameters:
             magicDamage (float) : the magic damage of the enchantment.
         """
-        pass
+        self.__magicDamage = magicDamage
 
     # Properties for variables with getters and setters
     name = property(getName, setName)

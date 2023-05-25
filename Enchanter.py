@@ -1,5 +1,20 @@
+'''
+File: Enchanter.py
+Description: This files contains the code for the enchanter class.
+Author: Harrison Jenkins
+Student ID: 110348652
+EmailID: jenhi001
+This is my own work as defined by the University's Academic Misconduct Policy.
+'''
+
+
+from Workshop import *
 from Crafter import *
+from Forge import *
+from Weapon import *
 from Enchantment import *
+from Materials import *
+
 
 class Enchanter(Crafter):
     def __init__(self):
@@ -29,8 +44,16 @@ class Enchanter(Crafter):
         materials[catalystMaterial.__class__.__name__] -= 1 
 
         magicDamage = Enchantment.calculateMagicDamage(self, primaryMaterial, catalystMaterial)
+        
+        # Empty variable to assign effect to.
+        effect = ""
 
-        return Enchantment(name, magicDamage, primaryMaterial, catalystMaterial)
+        # Finding effect for the enchantment
+        for enchant in self.recipes.keys():
+            if name == enchant:
+                effect = self.recipes[name]
+
+        return Enchantment(name, magicDamage, effect, primaryMaterial, catalystMaterial)
 
     def disassemble(self, enchantment, materials):
         """
@@ -43,18 +66,25 @@ class Enchanter(Crafter):
         Returns:
             disassembledEnchantment: The disassembled materials.
         """
+
         materials[enchantment.primaryMaterial.__class__.__name__] += 1
         materials[enchantment.catalystMaterial.__class__.__name__] += 1 
         
         return enchantment
     
-    def enchant(self, weaponsList, weaponsToBeEnchanted, enchantmentList):
+    def enchant(self, weapon, enchantName, enchantment):
         """
         Enchants any given weapons.
 
         Parameters:
-            weaponsList (list) : The list of weapons stored in the workshop.
-            weaponsToBeEnchanted (string / list) : The string or list of weapon(s) to be enchanted.
-            enchantmentList (list) : The list of enchantments stored in the workshop.
+            weapon (string) : The list of weapons stored in the workshop.
+            enchantmentName (string) : The new name of the enchanted weapon.
+            enchantment (string) : The enchantment to be applied.
         """
-        pass
+        weapon.name = enchantName
+        weapon.enchanted = True
+        weapon.enchantment = enchantment
+        weapon.damage *= enchantment.magicDamage
+      
+                
+

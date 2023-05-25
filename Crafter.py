@@ -1,3 +1,13 @@
+'''
+File: Crafter.py
+Description: This files contains the code for the crafter class.
+Author: Harrison Jenkins
+Student ID: 110348652
+EmailID: jenhi001
+This is my own work as defined by the University's Academic Misconduct Policy.
+'''
+
+
 from abc import ABC, abstractmethod
 
 
