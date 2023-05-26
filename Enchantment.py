@@ -62,7 +62,7 @@ class Enchantment():
             magicDamage (float) : The damage of the enchantment.
                 
         """
-        return primaryMaterial.magicPower + catalystMaterial.magicPower
+        return (primaryMaterial.magicPower * primaryMaterial.strength) + (catalystMaterial.magicPower * catalystMaterial.strength)
 
     def useEffect(self):
         """
