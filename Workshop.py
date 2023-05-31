@@ -110,11 +110,18 @@ class Workshop():
         Returns:
         Weapons (list): The list of weapons.
         """
+
+        # String to add each weapon to then return
+        emptyString = ""
+
         for weapon in self.weapons:
             if weapon.enchanted == False:
-                print(f"The {weapon.name} is not enchanted. {weapon.attack()}")
+                emptyString += f"The {weapon.name} is not enchanted. {weapon.attack()}\n"
             else:
-                print(f"The {weapon.name} is imbued with a {weapon.enchantment.useEffect()}. {weapon.attack()}")
+                emptyString += f"The {weapon.name} is imbued with a {weapon.enchantment.useEffect()}. {weapon.attack()}\n"
+            
+        return emptyString
+                
 
     def displayEnchantments(self):
         """
@@ -123,8 +130,14 @@ class Workshop():
         Returns:
         Enchantments (list): The list of enchantments.
         """
+
+        # String to add each enchantment to then return
+        emptyString = ""
+
         for enchant in self.enchantments:
-            print(f"A {enchant.name} enchantment is stored in the workshop.")
+            emptyString += f"A {enchant.name} enchantment is stored in the workshop.\n"
+
+        return emptyString
 
     def displayMaterials(self):
         """
@@ -132,5 +145,11 @@ class Workshop():
 
         Materials (list): The list of materials.
         """
+        
+        # String to add each material to then return
+        emptyString = ""
+
         for material in self.materials:
-            print(f"{material}: {self.materials[material]} remaining.")
+            emptyString += f"{material}: {self.materials[material]} remaining.\n"
+
+        return emptyString
