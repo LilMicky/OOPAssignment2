@@ -22,14 +22,41 @@ class Workshop():
 
     Attributes
     ----------
-    forge : Class
+    forge : class
         The class used to forge weapons.
 
-    enchanter: Class
+    enchanter : class
         The class used to enchant weapons.
 
+    weapons : list
+        A list containing all of the weapons created.
+
+    enchantments : list
+        A list containing all of the enchantments created.
+    
+    materials : list
+        A list containing all of the materials created.
+    
     Methods
     -------
+    addWeapon() :
+        Adds a weapon to the workshop.
+
+    addEnchantment() :
+        Adds an enchantment to the workshop.
+
+    addMaterial() :
+        Adds a material to the workshop.
+
+    removeWeapon() :
+        Removes a weapon from the workshop.
+
+    removeEnchantment() :
+        Removes an enchantment from the workshop.
+
+    removeMaterial() :
+        Remove an enchantment from the workshop.
+    
     displayWeapons() :
         Returns a list of weapons stored in the workshop.
 

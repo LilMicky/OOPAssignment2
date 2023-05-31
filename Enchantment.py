@@ -24,12 +24,16 @@ class Enchantment():
     ----------
     name : string
         the name of the enchantment.
+        
     magicDamage : float
         the magic damage of the enchantment.
+
     effect : string
         the effect of the enchantment.
+
     primaryMaterial : string
         the primary material of the enchantment.
+
     catalystMaterial : string
         the catalyst material of the enchantment.
 
@@ -37,6 +41,7 @@ class Enchantment():
     -------
     calculateMagicDamage()
         calculates the magic damage of the enchantment.
+
     useEffect()
         uses the effect of the enchantment.
 

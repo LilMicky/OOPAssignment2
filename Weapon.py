@@ -23,17 +23,27 @@ class Weapon():
     ----------
     name : string
         name of the weapon.
+
     damage : float
         damage of the weapon.
+
     primaryMaterial : string
         primary material of the weapon.
+
     catalystMaterial : string
         catalyst material of the weapon.
+
+    enchantment : string
+        the enchantment attached to the weapon.
+    
+    enchanted : boolean
+        the status of whether the weapon is enchanted.
 
     Methods
     -------
     calculateDamage()
         Calculates the damage of a weapon.
+
     attack()
         Deals attack damage.
     """

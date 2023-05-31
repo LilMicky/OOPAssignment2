@@ -17,10 +17,10 @@ class Crafter(ABC):
 
     Methods
     --------
-    craft():
+    craft() :
         Does not return anything.
     
-    disassemble():
+    disassemble() :
         Does not return anything.
     """
     @abstractmethod
