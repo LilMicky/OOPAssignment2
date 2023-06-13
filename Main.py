@@ -37,6 +37,22 @@ class Crafter(ABC):
 
 
 class Enchanter(Crafter):
+    """
+    This class is a type of Crafter.
+
+    Attributes
+    ----------
+    recipes : dictionary
+        dictionary of enchantments alongside their effects.
+        
+    Methods
+    --------
+    craft(name, primaryMaterial, secondaryMaterial, materials):
+        Returns an enchantment.
+
+    disassemble(enchant, materials):
+        Returns the materials from a disassembled enchantment.
+    """
     def __init__(self):
         self.recipes = {
             "Holy": "pulses a blinding beam of light",
