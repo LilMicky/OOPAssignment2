@@ -89,7 +89,7 @@ class Weapon():
         Returns:
             attackMessage (string) : An attack message displaying the damage output.
         """
-        return f"It deals {self.damage:0.2f} damage."
+        return f"It deals {self.damage:.2f} damage."
 
     def getName(self):
         """

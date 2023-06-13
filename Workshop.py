@@ -7,7 +7,6 @@ EmailID: jenhi001
 This is my own work as defined by the University's Academic Misconduct Policy.
 '''
 
-from abc import ABC, abstractmethod
 from Crafter import *
 from Enchanter import *
 from Forge import *
@@ -16,7 +15,7 @@ from Enchantment import *
 from Materials import *
 
 
-class antiDuplication():
+class AntiDuplication():
     
     def display(self, list):
 
@@ -30,7 +29,7 @@ class antiDuplication():
 
             return emptyString
         
-        if list.__class__.__name__ == "Weapon":
+        if list[0].__class__.__name__ == "Weapon":
             for weapon in list:
                 if weapon.enchantment == "":
                     emptyString += f"The {weapon.name} is not enchanted. {weapon.attack()}\n"
@@ -46,7 +45,7 @@ class antiDuplication():
     
                 
 
-class Workshop(antiDuplication):
+class Workshop(AntiDuplication):
     """
     The main class where the enchanter, and forge class objects will be stored. As well as the weapons, enchantments, and materials.
 

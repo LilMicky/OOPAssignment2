@@ -72,16 +72,16 @@ class Enchanter(Crafter):
         
         return enchantment
     
-    def enchant(self, weapon, enchantName, enchantment):
+    def enchant(self, weapon, newWeaponName, enchantment):
         """
         Enchants any given weapons.
 
         Parameters:
-            weapon (string) : The list of weapons stored in the workshop.
+            weapon (object) : The weapon to be enchanted.
             enchantmentName (string) : The new name of the enchanted weapon.
             enchantment (string) : The enchantment to be applied.
         """
-        weapon.name = enchantName
+        weapon.name = newWeaponName
         weapon.enchantment = enchantment
         weapon.damage *= enchantment.magicDamage
       

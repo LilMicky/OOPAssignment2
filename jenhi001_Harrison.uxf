@@ -35,8 +35,9 @@ fontsize=10
     </coordinates>
     <panel_attributes>Forge
 -
+-
 +craft(name: string, damage: float, primaryMaterial: string, catalystMaterial: string, enchantment: string): object
-+disassemble(weapon: object)</panel_attributes>
++disassemble(weapon: Weapon)</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
@@ -54,7 +55,7 @@ fontsize=10
 +craft(name: string, magicDamage: float, effect: string, primaryMaterial: string, catalystMaterial: string): object
 +disassemble(object)
 +create(name: string, magicDamage: float, primaryMaterial: Material, catalystMaterial: Material)
-+enchant(string1, string2, string3)</panel_attributes>
++enchant(weapon: Weapon, newWeaponName: string, enchantment: string)</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
@@ -77,8 +78,8 @@ fontsize=10
     <coordinates>
       <x>790</x>
       <y>700</y>
-      <w>330</w>
-      <h>250</h>
+      <w>350</w>
+      <h>270</h>
     </coordinates>
     <panel_attributes>Weapon
 -
@@ -88,26 +89,28 @@ fontsize=10
 -catalyst: string
 -enchantment: string
 -
++calculateDamage(primaryMaterial: Material, catalystMaterial: Material): float
++attack(): string
+
 +getName(): string
 +getDamage(): float
 +getEnchanted(): Enchantment
 +getPrimaryMaterial(): Material
 +getSecondaryMaterial(): Material
 +getEnchantment(): string
+
 +setName(name: string)
 +setDamage(damage: float)
 +setEnchanted(enchantment: Enchantment)
-+setEnchantment(name: string)
-+calculateDamage(primaryMaterial: Material, catalystMaterial: Material): float
-+attack(): string</panel_attributes>
++setEnchantment(name: string)</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>1270</x>
+      <x>1240</x>
       <y>700</y>
-      <w>300</w>
+      <w>360</w>
       <h>250</h>
     </coordinates>
     <panel_attributes>Enchantment
@@ -118,15 +121,18 @@ fontsize=10
 -primaryMaterial: string
 -catalystMaterial: string
 -
++calcMagicDamage(primaryMaterial: Material, catalystMaterial: Material): float
++useEffect(): string
+
 +getName(): string
 +getMagicDamage(): float
 +getEffect(): string
 +getPrimaryMaterial(): string
 +getCatalystMaterial(): string
+
 +setEffect(effect: string)
 +setMagicDamage(damage: float)
-+calcMagicDamage(primaryMaterial: float, catalystMaterial: float)
-+useEffect(): string</panel_attributes>
+</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
@@ -144,12 +150,14 @@ fontsize=10
     <id>UMLClass</id>
     <coordinates>
       <x>1010</x>
-      <y>370</y>
+      <y>330</y>
       <w>320</w>
-      <h>190</h>
+      <h>230</h>
     </coordinates>
     <panel_attributes>Workshop
 -
++forge: object
++enchanter: object
 +weapons: list
 +materials: dict
 +enchantment: list
@@ -157,9 +165,11 @@ fontsize=10
 +displayWeapons(): string
 +displayEnchantments(): string
 +displayMaterials(): string
+
 +addWeapon(weapon: Weapon)
 +addEnchantment(enchantment: Enchantment)
 +addMaterial(material: Material)
+
 +removeWeapon(weapon: Weapon)
 +removeEnchantment(enchantment: Enchantment)
 +removeMaterial(material: Material)</panel_attributes>
@@ -736,12 +746,12 @@ stores</panel_attributes>
       <x>1160</x>
       <y>200</y>
       <w>50</w>
-      <h>190</h>
+      <h>150</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;&lt;&lt;&lt;-
 m1=1
 m2=0..2</panel_attributes>
-    <additional_attributes>10.0;170.0;10.0;10.0</additional_attributes>
+    <additional_attributes>10.0;130.0;10.0;10.0</additional_attributes>
   </element>
   <element>
     <id>Relation</id>
@@ -759,21 +769,46 @@ m2=0..2</panel_attributes>
     <coordinates>
       <x>940</x>
       <y>50</y>
-      <w>1130</w>
+      <w>990</w>
       <h>1160</h>
     </coordinates>
     <panel_attributes>lt=&lt;-</panel_attributes>
-    <additional_attributes>10.0;900.0;10.0;1140.0;1110.0;1140.0;1110.0;10.0;960.0;10.0</additional_attributes>
+    <additional_attributes>10.0;920.0;10.0;1140.0;970.0;1130.0;970.0;10.0;960.0;10.0</additional_attributes>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
       <x>1410</x>
-      <y>290</y>
-      <w>580</w>
-      <h>800</h>
+      <y>350</y>
+      <w>230</w>
+      <h>740</h>
     </coordinates>
     <panel_attributes>lt=&lt;-</panel_attributes>
-    <additional_attributes>10.0;660.0;10.0;780.0;560.0;780.0;560.0;10.0;480.0;10.0</additional_attributes>
+    <additional_attributes>10.0;600.0;10.0;720.0;210.0;720.0;210.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>800</x>
+      <y>430</y>
+      <w>120</w>
+      <h>60</h>
+    </coordinates>
+    <panel_attributes>AntiDuplication
+-
+-
++display(list: list): string</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>910</x>
+      <y>450</y>
+      <w>120</w>
+      <h>30</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
+    <additional_attributes>10.0;10.0;100.0;10.0</additional_attributes>
   </element>
 </diagram>
