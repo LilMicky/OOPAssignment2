@@ -82,7 +82,6 @@ class Enchanter(Crafter):
             enchantment (string) : The enchantment to be applied.
         """
         weapon.name = enchantName
-        weapon.enchanted = True
         weapon.enchantment = enchantment
         weapon.damage *= enchantment.magicDamage
       

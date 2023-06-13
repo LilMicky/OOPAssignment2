@@ -7,7 +7,7 @@ EmailID: jenhi001
 This is my own work as defined by the University's Academic Misconduct Policy.
 '''
 
-
+from abc import ABC, abstractmethod
 from Crafter import *
 from Enchanter import *
 from Forge import *
@@ -16,7 +16,37 @@ from Enchantment import *
 from Materials import *
 
 
-class Workshop():
+class antiDuplication():
+    
+    def display(self, list):
+
+        # String to add each msg to then return
+        emptyString = ""
+
+        # Only materials are in a dict so if this is true, it has to be materials.
+        if list.__class__.__name__ == "dict":
+            for material in list:
+                emptyString += f"{material}: {list[material]} remaining.\n"
+
+            return emptyString
+        
+        if list.__class__.__name__ == "Weapon":
+            for weapon in list:
+                if weapon.enchantment == "":
+                    emptyString += f"The {weapon.name} is not enchanted. {weapon.attack()}\n"
+                else:
+                    emptyString += f"The {weapon.name} is imbued with a {weapon.enchantment.useEffect()}. {weapon.attack()}\n"
+
+            return emptyString
+        
+        for enchant in list:
+                emptyString += f"A {enchant.name} enchantment is stored in the workshop.\n"
+
+        return emptyString
+    
+                
+
+class Workshop(antiDuplication):
     """
     The main class where the enchanter, and forge class objects will be stored. As well as the weapons, enchantments, and materials.
 
@@ -137,17 +167,7 @@ class Workshop():
         Returns:
         Weapons (list): The list of weapons.
         """
-
-        # String to add each weapon to then return
-        emptyString = ""
-
-        for weapon in self.weapons:
-            if weapon.enchanted == False:
-                emptyString += f"The {weapon.name} is not enchanted. {weapon.attack()}\n"
-            else:
-                emptyString += f"The {weapon.name} is imbued with a {weapon.enchantment.useEffect()}. {weapon.attack()}\n"
-            
-        return emptyString
+        return super().display(self.weapons)
                 
 
     def displayEnchantments(self):
@@ -157,14 +177,8 @@ class Workshop():
         Returns:
         Enchantments (list): The list of enchantments.
         """
+        return super().display(self.enchantments)
 
-        # String to add each enchantment to then return
-        emptyString = ""
-
-        for enchant in self.enchantments:
-            emptyString += f"A {enchant.name} enchantment is stored in the workshop.\n"
-
-        return emptyString
 
     def displayMaterials(self):
         """
@@ -172,11 +186,4 @@ class Workshop():
 
         Materials (list): The list of materials.
         """
-        
-        # String to add each material to then return
-        emptyString = ""
-
-        for material in self.materials:
-            emptyString += f"{material}: {self.materials[material]} remaining.\n"
-
-        return emptyString
+        return super().display(self.materials)

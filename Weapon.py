@@ -63,7 +63,6 @@ class Weapon():
         self.__primaryMaterial = primaryMaterial
         self.__catalystMaterial = catalystMaterial
         self.__enchantment = ""
-        self.__enchanted = False
 
     def calculateDamage(self, primaryMaterial, catalystMaterial):
         """
