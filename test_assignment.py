@@ -1,12 +1,6 @@
 import unittest
 
-from Workshop import *
-from Crafter import *
-from Enchanter import *
-from Forge import *
-from Weapon import *
-from Enchantment import *
-from Materials import *
+from main import *
 
 ## USING MAIN CODE TO CREATE A TEST ENVIRONMENT ##
 # Creating a workshop, forge, enchanter.
@@ -20,7 +14,7 @@ weaponBlueprints = {
 "Sword": [Steel(), Maple()],
 "Shield": [Bronze(), Oak()],
 "Axe": [Iron(), Ash()],
-"Scythe": [Steel(), Ash()],
+69: [Steel(), Ash()],
 "Bow": [Oak(), Maple()],
 "Wand": [Ash(), Oak()],
 "Staff": [Bronze(), Maple()],
@@ -50,21 +44,28 @@ for material in materials:
 
 class TestAssignment(unittest.TestCase):
     def testWeapon(self):
-        pass
         #calcDmg
         #atk
         #assert raises - mismatached inputs
         #assert equals - values of dmg
-    
+        pass
+
     def testEnchanment(self):
         #calcMagicDmg
         #useEffect
         pass
 
-    def testForge(self):
-        #craft
+    def testForgeAndWeapon(self):
+
+        # Craft, Calculate Damage, and Attack method being tested for each weapon
+        for weapon, materials in weaponBlueprints.items():
+            craftedWeapon = workshop.forge.craft(weapon, materials[0], materials[1], workshop.materials)
+            self.assertEqual(craftedWeapon.__class__.__name__, "Weapon")
+            self.assertEqual(craftedWeapon.damage, Weapon.calculateDamage(self, materials[0], materials[1]))
+            self.assertEqual(craftedWeapon.attack(), f"It deals {Weapon.calculateDamage(self, materials[0], materials[1]):.2f} damage.")
+
+
         #disassemble
-        pass
 
     def testEnchanter(self):
         #craft
