@@ -44,7 +44,7 @@ class Enchanter(Crafter):
     ----------
     recipes : dictionary
         dictionary of enchantments alongside their effects.
-        
+
     Methods
     --------
     craft(name, primaryMaterial, secondaryMaterial, materials):
@@ -155,7 +155,7 @@ class Forge(Crafter):
         materials[catalystMaterial.__class__.__name__] -= 1
 
         damage = Weapon.calculateDamage(self, primaryMaterial, catalystMaterial)
-        return Weapon(name, primaryMaterial, catalystMaterial, damage)
+        return Weapon(name, damage, primaryMaterial, catalystMaterial)
 
     def disassemble(self, weapon, materials):
         """
@@ -352,7 +352,7 @@ class Weapon():
     attack()
         Deals attack damage.
     """
-    def __init__(self, name, primaryMaterial, catalystMaterial, damage):
+    def __init__(self, name, damage, primaryMaterial, catalystMaterial):
         """
         Creates a weapon object.
 
