@@ -14,7 +14,7 @@ weaponBlueprints = {
 "Sword": [Steel(), Maple()],
 "Shield": [Bronze(), Oak()],
 "Axe": [Iron(), Ash()],
-69: [Steel(), Ash()],
+"Scythe": [Steel(), Ash()],
 "Bow": [Oak(), Maple()],
 "Wand": [Ash(), Oak()],
 "Staff": [Bronze(), Maple()],
@@ -43,18 +43,6 @@ for material in materials:
         workshop.addMaterial(material.__class__.__name__, 5)
 
 class TestAssignment(unittest.TestCase):
-    def testWeapon(self):
-        #calcDmg
-        #atk
-        #assert raises - mismatached inputs
-        #assert equals - values of dmg
-        pass
-
-    def testEnchanment(self):
-        #calcMagicDmg
-        #useEffect
-        pass
-
     def testForgeAndWeapon(self):
 
         # Craft, Calculate Damage, and Attack method being tested for each weapon
@@ -63,22 +51,27 @@ class TestAssignment(unittest.TestCase):
             self.assertEqual(craftedWeapon.__class__.__name__, "Weapon")
             self.assertEqual(craftedWeapon.damage, Weapon.calculateDamage(self, materials[0], materials[1]))
             self.assertEqual(craftedWeapon.attack(), f"It deals {Weapon.calculateDamage(self, materials[0], materials[1]):.2f} damage.")
+            workshop.addWeapon(craftedWeapon)
+        
+        self.assertEqual(len(workshop.weapons), 8)
+        workshop.removeWeapon(workshop.forge.disassemble(workshop.weapons[7], workshop.materials))
+        self.assertNotEqual(len(workshop.weapons), 8)
 
-
-        #disassemble
-
-    def testEnchanter(self):
-        #craft
-        #disassemble
-        #enchant
-        pass
+    def testEnchanterAndEnchantment(self):
+        for enchantment, materials in enchantmentBlueprints.items():
+            craftedEnchantment = workshop.enchanter.craft(enchantment, materials[0], materials[1], workshop.materials)
+            self.assertEqual(craftedEnchantment.__class__.__name__, "Enchantment")
+            self.assertEqual(craftedEnchantment.magicDamage, Enchantment.calculateMagicDamage(self, materials[0], materials[1]))
+            self.assertEqual(craftedEnchantment.useEffect(), f"{craftedEnchantment.name} enchantment and {craftedEnchantment.effect}")
+            workshop.addEnchantment(craftedEnchantment)
+        
+        self.assertEqual(len(workshop.enchantments), 8)
+        workshop.removeEnchantment(workshop.enchanter.disassemble(workshop.enchantments[7], workshop.materials))
+        self.assertNotEqual(len(workshop.enchantments), 8)
 
     def testWorkshop(self):
-        #addWeapon
-        #addEnchantment
+        print(workshop.materials)
         #addMaterial
-        #removeWeapon
-        #removeEnchantment
         #removeMaterial
         #displayWeapons
         #displayEnchantments
