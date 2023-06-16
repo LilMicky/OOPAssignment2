@@ -1,6 +1,6 @@
 '''
-File: Workshop.py
-Description: This files contains the code for the workshop class.
+File: Main.py
+Description: This files contains the main code for the assignment.
 Author: Harrison Jenkins
 Student ID: 110348652
 EmailID: jenhi001
@@ -8,6 +8,89 @@ This is my own work as defined by the University's Academic Misconduct Policy.
 '''
 from abc import ABC, abstractmethod
 from Materials import *
+
+from abc import ABC
+
+class Material(ABC):
+    def __init__(self, strength):
+        self.strength = strength
+
+
+class Wood(Material):
+    def __init__(self, strength):
+        super().__init__(strength)
+
+
+class Metal(Material):
+    def __init__(self, strength, purity):
+        super().__init__(strength)
+        self.purity = purity
+
+
+class Gemstone(Material):
+    def __init__(self, strength, magicPower):
+        super().__init__(strength)
+        self.magicPower = magicPower
+
+
+class Maple(Wood):
+    def __init__(self, strength=5):
+        super().__init__(strength)
+
+
+class Ash(Wood):
+    def __init__(self, strength=3):
+        super().__init__(strength)
+
+
+class Oak(Wood):
+    def __init__(self, strength=4):
+        super().__init__(strength)
+
+
+class Bronze(Metal):
+    def __init__(self, strength=3, purity=1.3):
+        super().__init__(strength, purity)
+
+
+class Iron(Metal):
+    def __init__(self, strength=6, purity=1.1):
+        super().__init__(strength, purity)
+
+
+class Steel(Metal):
+    def __init__(self, strength=10, purity=1.8):
+        super().__init__(strength, purity)
+
+
+class Ruby(Gemstone):
+    def __init__(self, strength=1, magicPower=1.8):
+        super().__init__(strength, magicPower)
+
+
+class Sapphire(Gemstone):
+    def __init__(self, strength=1.2, magicPower=1.6):
+        super().__init__(strength, magicPower)
+
+
+class Emerald(Gemstone):
+    def __init__(self, strength=1.6, magicPower=1.1):
+        super().__init__(strength, magicPower)
+
+
+class Diamond(Gemstone):
+    def __init__(self, strength=2.1, magicPower=2.2):
+        super().__init__(strength, magicPower)
+
+
+class Amethyst(Gemstone):
+    def __init__(self, strength=1.8, magicPower=3.2):
+        super().__init__(strength, magicPower)
+
+
+class Onyx(Gemstone):
+    def __init__(self, strength=0.1, magicPower=4.6):
+        super().__init__(strength, magicPower)
 
 class Crafter(ABC):
     """
@@ -226,7 +309,7 @@ class Enchantment():
             magicDamage (float) : The damage of the enchantment.
                 
         """
-        return (primaryMaterial.magicPower * primaryMaterial.strength) + (catalystMaterial.magicPower * catalystMaterial.strength)
+        return round((primaryMaterial.magicPower * primaryMaterial.strength) + (catalystMaterial.magicPower * catalystMaterial.strength), 2)
 
     def useEffect(self):
         """
@@ -495,38 +578,9 @@ class Weapon():
     # Properties for variables with just getters
     primaryMaterial = property(getPrimaryMaterial)
     catalystMaterial = property(getSecondaryMaterial)
-
-
-class AntiDuplication():
-    
-    def display(self, list):
-
-        # String to add each msg to then return
-        emptyString = ""
-
-        # Only materials are in a dict so if this is true, it has to be materials.
-        if list.__class__.__name__ == "dict":
-            for material in list:
-                emptyString += f"{material}: {list[material]} remaining.\n"
-
-            return emptyString
         
-        if list[0].__class__.__name__ == "Weapon":
-            for weapon in list:
-                if weapon.enchantment == "":
-                    emptyString += f"The {weapon.name} is not enchanted. {weapon.attack()}\n"
-                else:
-                    emptyString += f"The {weapon.name} is imbued with a {weapon.enchantment.useEffect()}. {weapon.attack()}\n"
 
-            return emptyString
-        
-        for enchant in list:
-                emptyString += f"A {enchant.name} enchantment is stored in the workshop.\n"
-
-        return emptyString
-    
-
-class Workshop(AntiDuplication):
+class Workshop():
     """
     The main class where the enchanter, and forge class objects will be stored. As well as the weapons, enchantments, and materials.
 
@@ -647,7 +701,17 @@ class Workshop(AntiDuplication):
         Returns:
         Weapons (list): The list of weapons.
         """
-        return super().display(self.weapons)
+
+        # String to return
+        emptyString = ""
+
+        for weapon in self.weapons:
+            if weapon.enchantment == "":
+                emptyString += f"The {weapon.name} is not enchanted. {weapon.attack()}\n"
+            else:
+                emptyString += f"The {weapon.name} is imbued with a {weapon.enchantment.useEffect()}. {weapon.attack()}\n"
+
+        return emptyString
                 
 
     def displayEnchantments(self):
@@ -657,7 +721,13 @@ class Workshop(AntiDuplication):
         Returns:
         Enchantments (list): The list of enchantments.
         """
-        return super().display(self.enchantments)
+        # String to return
+        emptyString = ""
+
+        for enchant in self.enchantments:
+                emptyString += f"A {enchant.name} enchantment is stored in the workshop.\n"
+
+        return emptyString
 
 
     def displayMaterials(self):
@@ -666,7 +736,13 @@ class Workshop(AntiDuplication):
 
         Materials (list): The list of materials.
         """
-        return super().display(self.materials)
+        # String to return
+        emptyString = ""
+
+        for material in self.materials:
+                emptyString += f"{material}: {self.materials[material]} remaining.\n"
+
+        return emptyString
 
 # Create a workshop, forge, enchanter.
 workshop = Workshop(Forge(), Enchanter())

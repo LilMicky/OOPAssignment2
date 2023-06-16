@@ -786,29 +786,4 @@ m2=0..2</panel_attributes>
     <panel_attributes>lt=&lt;-</panel_attributes>
     <additional_attributes>10.0;600.0;10.0;720.0;210.0;720.0;210.0;10.0</additional_attributes>
   </element>
-  <element>
-    <id>UMLClass</id>
-    <coordinates>
-      <x>800</x>
-      <y>430</y>
-      <w>120</w>
-      <h>60</h>
-    </coordinates>
-    <panel_attributes>AntiDuplication
--
--
-+display(list: list): string</panel_attributes>
-    <additional_attributes/>
-  </element>
-  <element>
-    <id>Relation</id>
-    <coordinates>
-      <x>910</x>
-      <y>450</y>
-      <w>120</w>
-      <h>30</h>
-    </coordinates>
-    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
-    <additional_attributes>10.0;10.0;100.0;10.0</additional_attributes>
-  </element>
 </diagram>
